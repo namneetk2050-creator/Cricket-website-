@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Blog</title>
+      <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background: #333;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 10px 15px;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #555;
+      }
+
+      .post {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        transition:
+          all 0.3s,
+          ease;
+      }
+      .post:hover {
+        transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .post img {
+        max-width: 100%;
+        margin-top: 10px;
+        border-radius: 8px;
+      }
+
+      .delete-btn {
+        background: red;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  </head>
+  <body>
+    <nav>
+      <h1 class="heading">Womens multiformat series IND vs AUS</h1>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="jerseycustimisation.html">Personalised Jersey</a></li>
+        <li><a href="merchandising.html">Merchandising</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="highlights.html">Highlights</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+    <header>
+      <h1>My Blog</h1>
+    </header>
+
+    <div class="container">
+      <h2>Create Post</h2>
+      <input type="text" id="title" placeholder="Enter title" />
+      <textarea
+        id="content"
+        rows="5"
+        placeholder="Write your blog..."
+      ></textarea>
+      <input type="file" id="image" accept="image/*" />
+      <button type="button" onclick="addPost()">Post</button>
+
+      <h2>All Posts</h2>
+      <div id="posts"></div>
+    </div>
+
+    <script>
+      let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+      function renderPosts() {
+        const postsDiv = document.getElementById("posts");
+        postsDiv.innerHTML = "";
+
+        posts.forEach((post, index) => {
+          const div = document.createElement("div");
+          div.className = "post";
+
+          div.innerHTML = `
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          ${post.image ? `<img src="${post.image}" />` : ""}
+          <button class="delete-btn" onclick="deletePost(${index})">Delete</button>
+        `;
+
+          postsDiv.appendChild(div);
+        });
+      }
+
+      function addPost() {
+        const title = document.getElementById("title").value;
+        const content = document.getElementById("content").value;
+        const imageInput = document.getElementById("image");
+        const file = imageInput.files[0];
+
+        if (!title || !content) {
+          alert("Please fill all fields");
+          return;
+        }
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            savePost(title, content, e.target.result);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          savePost(title, content, null);
+        }
+      }
+
+      function savePost(title, content, image) {
+        posts.push({ title, content, image });
+        localStorage.setItem("posts", JSON.stringify(posts));
+
+        document.getElementById("title").value = "";
+        document.getElementById("content").value = "";
+        document.getElementById("image").value = "";
+
+        renderPosts();
+      }
+
+      function deletePost(index) {
+        posts.splice(index, 1);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        renderPosts();
+      }
+
+      renderPosts();
+    </script>
+  </body>
+</html>
