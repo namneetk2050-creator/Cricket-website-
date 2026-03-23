@@ -1,171 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-      <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav>
-      <h1 class="heading">Womens multiformat series IND vs AUS</h1>
-      <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="jerseycustimisation.html">Personalised Jersey</a></li>
-        <li><a href="merchandising.html">Merchandising</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="highlights.html">Highlights</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-    <canvas id="fireworks"></canvas>
-    <div class="decision-section">
-      <div class="video-card">
-        <video controls id="myVideo">
-          <source src="match.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IND vs AUS Experience</title>
+  <link rel="stylesheet" href="style.css">
 
-        <div class="decision-buttons">
-          <button id="notout">NOT OUT</button>
-          <button id="indialost">OUT</button>
-          <h3 id="answer"></h3>
-        </div>
-      </div>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav>
+    <h1 class="heading">IND vs AUS</h1>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="jerseycustimisation.html">Jersey</a></li>
+      <li><a href="merchandising.html">Shop</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="highlights.html">Highlights</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Feel The Stadium Energy</h1>
+      <p>India vs Australia Women’s Series</p>
+      <a href="merchandising.html" class="btn">Explore Now</a>
     </div>
-    <!-- <button onclick="document.getElementById('demo').innerHTML = Date()">
-      The time is?
-    </button>
-    <h1 id="demo"></h1> -->
-    <script>
-      document.getElementById("fireworks").style.display = "none";
-      const video = document.getElementById("myVideo");
-      const notOutBtn = document.getElementById("notout");
-      const outBtn = document.getElementById("indialost");
+  </section>
 
-      // OUT button
-      outBtn.addEventListener("click", function () {
-        document.getElementById("answer").style.display = "block";
-        document.getElementById("answer").innerHTML = "correct";
-        document.getElementById("fireworks").style.display = "block";
-      });
+  <!-- ================= FEATURES ================= -->
+  <section class="features">
+    <div class="feature-card">
+      <h2>🎮 Interactive Game</h2>
+      <p>Predict decisions and enjoy match simulations</p>
+    </div>
 
-      // NOT OUT button
-      notOutBtn.addEventListener("click", function () {
-        document.getElementById("answer").style.display = "block";
-        document.getElementById("answer").innerHTML = "incorrect";
-      });
+    <div class="feature-card">
+      <h2>🧠 Quiz Challenge</h2>
+      <p>Test your cricket knowledge in real time</p>
+    </div>
 
-      // Stop at 11 seconds
-      video.addEventListener("timeupdate", function () {
-        if (video.currentTime >= 11) {
-          video.pause();
-        }
-      });
-      const canvas = document.getElementById("fireworks");
-      const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    <div class="feature-card">
+      <h2>🛍 Merchandise</h2>
+      <p>Explore jerseys, caps and collectibles</p>
+    </div>
+  </section>
 
-      class Particle {
-        constructor(x, y, color) {
-          this.x = x;
-          this.y = y;
-          this.color = color;
-          this.velocity = {
-            x: (Math.random() - 0.5) * 8,
-            y: (Math.random() - 0.5) * 8,
-          };
-          this.alpha = 1;
-          this.friction = 0.99;
-        }
+  <!-- ================= HIGHLIGHT SECTION ================= -->
+  <section class="highlight">
+    <h2>Match Highlights</h2>
+    <p>Watch thrilling moments from the series</p>
+    <a href="highlights.html" class="btn">Watch Now</a>
+  </section>
 
-        draw() {
-          ctx.globalAlpha = this.alpha;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, 2, 0, Math.PI * 2, false);
-          ctx.fillStyle = this.color;
-          ctx.fill();
-        }
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>© 2026 Cricket Experience | Built with passion</p>
+  </footer>
 
-        update() {
-          this.velocity.x *= this.friction;
-          this.velocity.y *= this.friction;
-          this.x += this.velocity.x;
-          this.y += this.velocity.y;
-          this.alpha -= 0.01;
-        }
-      }
-
-      class Firework {
-        constructor(x, y, color) {
-          this.x = x;
-          this.y = y;
-          this.color = color;
-          this.velocity = { x: 0, y: Math.random() * -2.5 - 0.5 };
-          this.particles = [];
-          this.lifespan = 180;
-          this.hasExploded = false;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
-          ctx.fillStyle = this.color;
-          ctx.fill();
-        }
-
-        explode() {
-          for (let i = 0; i < 50; i++) {
-            this.particles.push(new Particle(this.x, this.y, this.color));
-          }
-        }
-
-        update() {
-          this.lifespan--;
-
-          if (this.lifespan <= 0 && !this.hasExploded) {
-            this.explode();
-            this.velocity = { x: 0, y: 0 };
-            this.hasExploded = true;
-          } else if (this.lifespan > 0) {
-            this.y += this.velocity.y;
-          }
-
-          for (let i = 0; i < this.particles.length; i++) {
-            this.particles[i].update();
-            this.particles[i].draw();
-          }
-        }
-      }
-      let fireworks = [];
-
-      function animate() {
-        requestAnimationFrame(animate);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        fireworks.forEach((firework, index) => {
-          firework.update();
-          firework.draw();
-
-          if (
-            firework.lifespan <= 0 &&
-            firework.particles.every((p) => p.alpha <= 0)
-          ) {
-            fireworks.splice(index, 1);
-          }
-        });
-
-        if (Math.random() < 0.015) {
-          const x = Math.random() * canvas.width;
-          const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-          fireworks.push(new Firework(x, canvas.height, color));
-        }
-      }
-
-      animate();
-    </script>
-  </body>
+</body>
 </html>

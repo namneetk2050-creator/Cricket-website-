@@ -1,240 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IND vs AUS Quiz</title>
- <link rel="stylesheet" href="style.css" />
- 
-    <style>
-      /* ===== RESET ===== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-      /* ===== NAVBAR ===== */
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #111;
-        padding: 15px 40px;
-      }
+<body>
 
-      .heading {
-        color: white;
-        font-size: 20px;
-      }
+  <!-- NAVBAR -->
+  <nav>
+    <h1 class="heading">IND vs AUS</h1>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="jerseycustimisation.html">Jersey</a></li>
+      <li><a href="merchandising.html">Shop</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="highlights.html">Highlights</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
 
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 25px;
-      }
+  <!-- QUIZ -->
+  <section class="quiz-section">
 
-      .nav-links a {
-        text-decoration: none;
-        color: white;
-        transition: 0.3s;
-      }
+    <h2 class="quiz-title">Cricket Quiz Challenge 🏏</h2>
+    <p id="score">Score: 0</p>
+    <p id="timer">Time: 10</p>
 
-      .nav-links a:hover {
-        color: #00ffcc;
-      }
+    <div id="quizBox" class="question-card"></div>
 
-      /* ===== QUIZ SECTION ===== */
-      .quiz-section {
-        padding: 60px 20px;
-        background: #f4f4f4;
-        min-height: 100vh;
-      }
-
-      .quiz-title {
-        text-align: center;
-        margin-bottom: 10px;
-        font-size: 28px;
-      }
-
-      #liveScore {
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 40px;
-      }
-
-      /* QUESTION CARD */
-      .question-card {
-        background: white;
-        width: 450px;
-        margin: 20px auto;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        transition: 0.3s;
-      }
-
-      .question-card:hover {
-        transform: translateY(-5px);
-      }
-
-      /* OPTIONS */
-      .option-btn {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        background: #222;
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      .option-btn:hover {
-        background: #00bcd4;
-      }
-
-      .option-btn:disabled {
-        cursor: not-allowed;
-        opacity: 0.7;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <h1 class="heading">Womens multiformat series IND vs AUS</h1>
-      <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="jerseycustimisation.html">Personalised Jersey</a></li>
-        <li><a href="merchandising.html">Merchandising</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="highlights.html">Highlights</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-    <!-- QUIZ -->
-    <div class="quiz-section">
-      <h2 class="quiz-title">Cricket Quiz Challenge 🏏</h2>
-      <p id="liveScore">Score: 0 / 10</p>
-
-      <div id="quizContainer"></div>
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn" onclick="restartQuiz()">Restart</button>
     </div>
 
-    <script>
-      const questions = [
-        {
-          question: "Who is the captain of India Women's team?",
-          options: [
-            "Harmanpreet Kaur",
-            "Smriti Mandhana",
-            "Jhulan Goswami",
-            "Mithali Raj",
-          ],
-          answer: "Harmanpreet Kaur",
-        },
-        {
-          question: "How many players in a cricket team?",
-          options: ["9", "10", "11", "12"],
-          answer: "11",
-        },
-        {
-          question: "What does LBW stand for?",
-          options: [
-            "Long Ball Wide",
-            "Leg Before Wicket",
-            "Left Bat Wide",
-            "Leg By Win",
-          ],
-          answer: "Leg Before Wicket",
-        },
-        {
-          question: "Which country is AUS?",
-          options: ["Austria", "Australia", "America", "Argentina"],
-          answer: "Australia",
-        },
-        {
-          question: "How many overs in T20?",
-          options: ["10", "20", "50", "90"],
-          answer: "20",
-        },
-        {
-          question: "How many runs for a six?",
-          options: ["4", "5", "6", "7"],
-          answer: "6",
-        },
-        {
-          question: "DRS means?",
-          options: [
-            "Decision Review System",
-            "Direct Run Score",
-            "Double Run Shot",
-            "None",
-          ],
-          answer: "Decision Review System",
-        },
-        {
-          question: "What color ball in Test?",
-          options: ["White", "Pink", "Red", "Blue"],
-          answer: "Red",
-        },
-        {
-          question: "Wicketkeeper wears?",
-          options: ["Helmet", "Gloves", "Pads only", "Shoes"],
-          answer: "Gloves",
-        },
-        {
-          question: "Cricket originated in?",
-          options: ["India", "Australia", "England", "USA"],
-          answer: "England",
-        },
-      ];
+  </section>
 
-      let score = 0;
-      const quizContainer = document.getElementById("quizContainer");
-      const scoreDisplay = document.getElementById("liveScore");
+  <script>
 
-      questions.forEach((q, index) => {
-        const card = document.createElement("div");
-        card.classList.add("question-card");
+    const questions = [
+      {
+        question: "Captain of India Women's team?",
+        options: ["Harmanpreet Kaur", "Smriti Mandhana", "Mithali Raj"],
+        answer: "Harmanpreet Kaur"
+      },
+      {
+        question: "Players in cricket team?",
+        options: ["10", "11", "12"],
+        answer: "11"
+      },
+      {
+        question: "LBW means?",
+        options: ["Leg Before Wicket", "Long Ball Wide", "Left Bat Wide"],
+        answer: "Leg Before Wicket"
+      },
+      {
+        question: "Overs in T20?",
+        options: ["10", "20", "50"],
+        answer: "20"
+      },
+      {
+        question: "Origin of cricket?",
+        options: ["India", "England", "Australia"],
+        answer: "England"
+      }
+    ];
 
-        const questionEl = document.createElement("h3");
-        questionEl.textContent = index + 1 + ". " + q.question;
-        card.appendChild(questionEl);
+    let current = 0;
+    let score = 0;
+    let timeLeft = 10;
+    let timer;
 
-        q.options.forEach((option) => {
-          const button = document.createElement("button");
-          button.classList.add("option-btn");
-          button.textContent = option;
+    // Shuffle questions
+    questions.sort(() => Math.random() - 0.5);
 
-          button.addEventListener("click", function () {
-            if (card.classList.contains("answered")) return;
+    const quizBox = document.getElementById("quizBox");
+    const scoreDisplay = document.getElementById("score");
+    const timerDisplay = document.getElementById("timer");
 
-            card.classList.add("answered");
+    function loadQuestion() {
+      clearInterval(timer);
+      timeLeft = 10;
+      startTimer();
 
-            if (option === q.answer) {
-              button.style.background = "green";
-              score++;
-            } else {
-              button.style.background = "red";
-            }
+      const q = questions[current];
 
-            scoreDisplay.textContent = "Score: " + score + " / 10";
+      quizBox.innerHTML = `
+        <h3>${q.question}</h3>
+        ${q.options.map(opt => 
+          `<button class="option-btn" onclick="checkAnswer('${opt}')">${opt}</button>`
+        ).join("")}
+      `;
+    }
 
-            const allButtons = card.querySelectorAll(".option-btn");
-            allButtons.forEach((btn) => (btn.disabled = true));
-          });
+    function checkAnswer(selected) {
+      const correct = questions[current].answer;
 
-          card.appendChild(button);
-        });
+      if (selected === correct) {
+        score++;
+      }
 
-        quizContainer.appendChild(card);
-      });
-    </script>
-    <script src="script.js"></script>
-  </body>
+      current++;
+
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+
+      scoreDisplay.innerText = "Score: " + score;
+    }
+
+    function startTimer() {
+      timerDisplay.innerText = "Time: " + timeLeft;
+
+      timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = "Time: " + timeLeft;
+
+        if (timeLeft === 0) {
+          current++;
+          if (current < questions.length) {
+            loadQuestion();
+          } else {
+            showResult();
+          }
+        }
+      }, 1000);
+    }
+
+    function showResult() {
+      clearInterval(timer);
+
+      let message = "";
+
+      if (score === questions.length) {
+        message = "🏆 Cricket Expert!";
+      } else if (score >= 3) {
+        message = "👍 Good Knowledge!";
+      } else {
+        message = "😅 Needs Practice!";
+      }
+
+      quizBox.innerHTML = `
+        <h2>${message}</h2>
+        <p>Your Score: ${score} / ${questions.length}</p>
+      `;
+    }
+
+    function restartQuiz() {
+      current = 0;
+      score = 0;
+      scoreDisplay.innerText = "Score: 0";
+      questions.sort(() => Math.random() - 0.5);
+      loadQuestion();
+    }
+
+    loadQuestion();
+
+  </script>
+
+</body>
 </html>

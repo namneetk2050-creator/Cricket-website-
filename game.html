@@ -1,23 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-      <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Review Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-      <h1 class="heading">Womens multiformat series IND vs AUS</h1>
-      <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="jerseycustimisation.html">Personalised Jersey</a></li>
-        <li><a href="merchandising.html">Merchandising</a></li>
-        <li><a href="game.html">Game</a></li>
-        <li><a href="quiz.html">Quiz</a></li>
-        <li><a href="highlights.html">Highlights</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav>
+    <h1 class="heading">IND vs AUS</h1>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="jerseycustimisation.html">Jersey</a></li>
+      <li><a href="merchandising.html">Shop</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="highlights.html">Highlights</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= GAME SECTION ================= -->
+  <section class="decision-section">
+
+    <div class="video-card">
+
+      <h2 style="margin-bottom:15px;">Make Your Decision 🏏</h2>
+
+      <video controls id="myVideo">
+        <source src="match.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+
+      <div class="decision-buttons">
+        <button id="notout">NOT OUT</button>
+        <button id="out">OUT</button>
+      </div>
+
+      <h3 id="result" style="margin-top:15px;"></h3>
+      <p id="scoreText" style="margin-top:5px;">Score: 0</p>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FIREWORK CANVAS ================= -->
+  <canvas id="fireworks"></canvas>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+
+    const video = document.getElementById("myVideo");
+    const result = document.getElementById("result");
+    const scoreText = document.getElementById("scoreText");
+    const fireworksCanvas = document.getElementById("fireworks");
+
+    let score = 0;
+
+    document.getElementById("out").addEventListener("click", () => {
+      result.innerHTML = "✅ Correct! It's OUT";
+      score++;
+      updateScore();
+      triggerFireworks();
+    });
+
+    document.getElementById("notout").addEventListener("click", () => {
+      result.innerHTML = "❌ Wrong! It's OUT";
+      updateScore();
+    });
+
+    function updateScore() {
+      scoreText.innerText = "Score: " + score;
+    }
+
+    // Stop video early
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= 10) {
+        video.pause();
+      }
+    });
+
+    // ================= FIREWORKS =================
+
+    const ctx = fireworksCanvas.getContext("2d");
+    fireworksCanvas.width = window.innerWidth;
+    fireworksCanvas.height = window.innerHeight;
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.velocity = {
+          x: (Math.random() - 0.5) * 6,
+          y: (Math.random() - 0.5) * 6
+        };
+        this.alpha = 1;
+      }
+
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+      update() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.alpha -= 0.02;
+      }
+    }
+
+    function triggerFireworks() {
+      let particles = [];
+
+      for (let i = 0; i < 50; i++) {
+        particles.push(new Particle(window.innerWidth / 2, window.innerHeight / 2, `hsl(${Math.random()*360},100%,50%)`));
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+
+        particles.forEach((p, index) => {
+          p.update();
+          p.draw();
+          if (p.alpha <= 0) particles.splice(index, 1);
+        });
+      }
+
+      animate();
+    }
+
+  </script>
+
 </body>
 </html>
