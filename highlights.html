@@ -1,147 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Match Highlights</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match Highlights</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ================= NAVBAR ================= -->
+    <nav>
+      <h1 class="heading">IND vs AUS</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jerseycustimisation.html">Jersey</a></li>
+        <li><a href="merchandising.html">Shop</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="highlights.html">Highlights</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
 
-  <!-- ================= NAVBAR ================= -->
-  <nav>
-    <h1 class="heading">IND vs AUS</h1>
-    <ul class="nav-links">
-      <li><a href="home.html">Home</a></li>
-      <li><a href="jerseycustimisation.html">Jersey</a></li>
-      <li><a href="merchandising.html">Shop</a></li>
-      <li><a href="game.html">Game</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="highlights.html">Highlights</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
+    <!-- ================= HERO ================= -->
+    <section class="highlight-hero">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>Match Highlights</h1>
+        <p>Relive the best moments from IND vs AUS</p>
+      </div>
+    </section>
 
-  <!-- ================= HERO ================= -->
-  <section class="highlight-hero">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Match Highlights</h1>
-      <p>Relive the best moments from IND vs AUS</p>
-    </div>
-  </section>
+    <!-- ================= VIDEO GRID ================= -->
+    <section class="highlight-grid">
+      <div class="highlight-card">
+        <video controls poster="image1.jpg">
+          <source src="match.mp4" type="video/mp4" />
+        </video>
+        <h3>Last Over Thriller</h3>
+        <p>India seals the match in a dramatic finish.</p>
+      </div>
 
-  <!-- ================= VIDEO GRID ================= -->
-  <section class="highlight-grid">
+      <div class="highlight-card">
+        <video controls poster="image3.png">
+          <source src="match.mp4" type="video/mp4" />
+        </video>
+        <h3>Brilliant Catch</h3>
+        <p>Unbelievable fielding effort saves crucial runs.</p>
+      </div>
 
-    <div class="highlight-card">
-      <video controls poster="image1.jpg">
+      <div class="highlight-card">
+        <video controls poster="image2.png">
+          <source src="match.mp4" type="video/mp4" />
+        </video>
+        <h3>Powerful Batting</h3>
+        <p>Explosive shots dominate the innings.</p>
+      </div>
+    </section>
+
+    <!-- ================= FEATURE VIDEO ================= -->
+    <section class="feature-video">
+      <h2>Featured Highlight</h2>
+      <video controls>
         <source src="match.mp4" type="video/mp4" />
       </video>
-      <h3>Last Over Thriller</h3>
-      <p>India seals the match in a dramatic finish.</p>
-    </div>
+    </section>
 
-    <div class="highlight-card">
-      <video controls poster="image3.png">
-        <source src="match.mp4" type="video/mp4" />
-      </video>
-      <h3>Brilliant Catch</h3>
-      <p>Unbelievable fielding effort saves crucial runs.</p>
-    </div>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>© 2026 Cricket Experience</p>
+    </footer>
 
-    <div class="highlight-card">
-      <video controls poster="image2.png">
-        <source src="match.mp4" type="video/mp4" />
-      </video>
-      <h3>Powerful Batting</h3>
-      <p>Explosive shots dominate the innings.</p>
-    </div>
+    <!-- ================= INLINE CSS (ONLY FOR THIS PAGE EXTRA) ================= -->
+    <style>
+      .highlight-hero {
+        height: 60vh;
+        background: url("image1.jpg") center/cover no-repeat;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
 
-  </section>
+      .highlight-hero .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+      }
 
-  <!-- ================= FEATURE VIDEO ================= -->
-  <section class="feature-video">
-    <h2>Featured Highlight</h2>
-    <video controls>
-      <source src="match.mp4" type="video/mp4" />
-    </video>
-  </section>
+      .highlight-hero .content {
+        position: relative;
+        z-index: 2;
+        color: white;
+      }
 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <p>© 2026 Cricket Experience</p>
-  </footer>
+      .highlight-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 60px;
+      }
 
-  <!-- ================= INLINE CSS (ONLY FOR THIS PAGE EXTRA) ================= -->
-  <style>
-    .highlight-hero {
-      height: 60vh;
-      background: url('image1.jpg') center/cover no-repeat;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+      .highlight-card {
+        background: white;
+        color: black;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: 0.3s;
+      }
 
-    .highlight-hero .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-    }
+      .highlight-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
 
-    .highlight-hero .content {
-      position: relative;
-      z-index: 2;
-      color: white;
-    }
+      .highlight-card video {
+        width: 100%;
+      }
 
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 60px;
-    }
+      .highlight-card h3 {
+        padding: 10px;
+      }
 
-    .highlight-card {
-      background: white;
-      color: black;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: 0.3s;
-    }
+      .highlight-card p {
+        padding: 0 10px 15px;
+        color: gray;
+      }
 
-    .highlight-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
+      .feature-video {
+        text-align: center;
+        padding: 60px 20px;
+      }
 
-    .highlight-card video {
-      width: 100%;
-    }
-
-    .highlight-card h3 {
-      padding: 10px;
-    }
-
-    .highlight-card p {
-      padding: 0 10px 15px;
-      color: gray;
-    }
-
-    .feature-video {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .feature-video video {
-      width: 70%;
-      border-radius: 15px;
-      margin-top: 20px;
-    }
-  </style>
-
-</body>
+      .feature-video video {
+        width: 70%;
+        border-radius: 15px;
+        margin-top: 20px;
+      }
+    </style>
+  </body>
 </html>

@@ -1,166 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cricket Quiz</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <h1 class="heading">IND vs AUS</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jerseycustimisation.html">Jersey</a></li>
+        <li><a href="merchandising.html">Shop</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="highlights.html">Highlights</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
 
-  <!-- NAVBAR -->
-  <nav>
-    <h1 class="heading">IND vs AUS</h1>
-    <ul class="nav-links">
-      <li><a href="home.html">Home</a></li>
-      <li><a href="jerseycustimisation.html">Jersey</a></li>
-      <li><a href="merchandising.html">Shop</a></li>
-      <li><a href="game.html">Game</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="highlights.html">Highlights</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
+    <!-- QUIZ -->
+    <section class="quiz-section">
+      <h2 class="quiz-title">Cricket Quiz Challenge 🏏</h2>
+      <p id="score">Score: 0</p>
+      <p id="timer">Time: 10</p>
 
-  <!-- QUIZ -->
-  <section class="quiz-section">
+      <div id="quizBox" class="question-card"></div>
 
-    <h2 class="quiz-title">Cricket Quiz Challenge 🏏</h2>
-    <p id="score">Score: 0</p>
-    <p id="timer">Time: 10</p>
+      <div style="text-align: center; margin-top: 20px">
+        <button class="btn" onclick="restartQuiz()">Restart</button>
+      </div>
+    </section>
 
-    <div id="quizBox" class="question-card"></div>
+    <script>
+      const questions = [
+        {
+          question: "Captain of India Women's team?",
+          options: ["Harmanpreet Kaur", "Smriti Mandhana", "Mithali Raj"],
+          answer: "Harmanpreet Kaur",
+        },
+        {
+          question: "Players in cricket team?",
+          options: ["10", "11", "12"],
+          answer: "11",
+        },
+        {
+          question: "LBW means?",
+          options: ["Leg Before Wicket", "Long Ball Wide", "Left Bat Wide"],
+          answer: "Leg Before Wicket",
+        },
+        {
+          question: "Overs in T20?",
+          options: ["10", "20", "50"],
+          answer: "20",
+        },
+        {
+          question: "Origin of cricket?",
+          options: ["India", "England", "Australia"],
+          answer: "England",
+        },
+      ];
 
-    <div style="text-align:center; margin-top:20px;">
-      <button class="btn" onclick="restartQuiz()">Restart</button>
-    </div>
+      let current = 0;
+      let score = 0;
+      let timeLeft = 10;
+      let timer;
 
-  </section>
+      // Shuffle questions
+      questions.sort(() => Math.random() - 0.5);
 
-  <script>
+      const quizBox = document.getElementById("quizBox");
+      const scoreDisplay = document.getElementById("score");
+      const timerDisplay = document.getElementById("timer");
 
-    const questions = [
-      {
-        question: "Captain of India Women's team?",
-        options: ["Harmanpreet Kaur", "Smriti Mandhana", "Mithali Raj"],
-        answer: "Harmanpreet Kaur"
-      },
-      {
-        question: "Players in cricket team?",
-        options: ["10", "11", "12"],
-        answer: "11"
-      },
-      {
-        question: "LBW means?",
-        options: ["Leg Before Wicket", "Long Ball Wide", "Left Bat Wide"],
-        answer: "Leg Before Wicket"
-      },
-      {
-        question: "Overs in T20?",
-        options: ["10", "20", "50"],
-        answer: "20"
-      },
-      {
-        question: "Origin of cricket?",
-        options: ["India", "England", "Australia"],
-        answer: "England"
-      }
-    ];
+      function loadQuestion() {
+        clearInterval(timer);
+        timeLeft = 10;
+        startTimer();
 
-    let current = 0;
-    let score = 0;
-    let timeLeft = 10;
-    let timer;
+        const q = questions[current];
 
-    // Shuffle questions
-    questions.sort(() => Math.random() - 0.5);
-
-    const quizBox = document.getElementById("quizBox");
-    const scoreDisplay = document.getElementById("score");
-    const timerDisplay = document.getElementById("timer");
-
-    function loadQuestion() {
-      clearInterval(timer);
-      timeLeft = 10;
-      startTimer();
-
-      const q = questions[current];
-
-      quizBox.innerHTML = `
+        quizBox.innerHTML = `
         <h3>${q.question}</h3>
-        ${q.options.map(opt => 
-          `<button class="option-btn" onclick="checkAnswer('${opt}')">${opt}</button>`
-        ).join("")}
+        ${q.options
+          .map(
+            (opt) =>
+              `<button class="option-btn" onclick="checkAnswer('${opt}')">${opt}</button>`,
+          )
+          .join("")}
       `;
-    }
-
-    function checkAnswer(selected) {
-      const correct = questions[current].answer;
-
-      if (selected === correct) {
-        score++;
       }
 
-      current++;
+      function checkAnswer(selected) {
+        const correct = questions[current].answer;
 
-      if (current < questions.length) {
-        loadQuestion();
-      } else {
-        showResult();
+        if (selected === correct) {
+          score++;
+        }
+
+        current++;
+
+        if (current < questions.length) {
+          loadQuestion();
+        } else {
+          showResult();
+        }
+
+        scoreDisplay.innerText = "Score: " + score;
       }
 
-      scoreDisplay.innerText = "Score: " + score;
-    }
-
-    function startTimer() {
-      timerDisplay.innerText = "Time: " + timeLeft;
-
-      timer = setInterval(() => {
-        timeLeft--;
+      function startTimer() {
         timerDisplay.innerText = "Time: " + timeLeft;
 
-        if (timeLeft === 0) {
-          current++;
-          if (current < questions.length) {
-            loadQuestion();
-          } else {
-            showResult();
+        timer = setInterval(() => {
+          timeLeft--;
+          timerDisplay.innerText = "Time: " + timeLeft;
+
+          if (timeLeft === 0) {
+            current++;
+            if (current < questions.length) {
+              loadQuestion();
+            } else {
+              showResult();
+            }
           }
-        }
-      }, 1000);
-    }
-
-    function showResult() {
-      clearInterval(timer);
-
-      let message = "";
-
-      if (score === questions.length) {
-        message = "🏆 Cricket Expert!";
-      } else if (score >= 3) {
-        message = "👍 Good Knowledge!";
-      } else {
-        message = "😅 Needs Practice!";
+        }, 1000);
       }
 
-      quizBox.innerHTML = `
+      function showResult() {
+        clearInterval(timer);
+
+        let message = "";
+
+        if (score === questions.length) {
+          message = "🏆 Cricket Expert!";
+        } else if (score >= 3) {
+          message = "👍 Good Knowledge!";
+        } else {
+          message = "😅 Needs Practice!";
+        }
+
+        quizBox.innerHTML = `
         <h2>${message}</h2>
         <p>Your Score: ${score} / ${questions.length}</p>
       `;
-    }
+      }
 
-    function restartQuiz() {
-      current = 0;
-      score = 0;
-      scoreDisplay.innerText = "Score: 0";
-      questions.sort(() => Math.random() - 0.5);
+      function restartQuiz() {
+        current = 0;
+        score = 0;
+        scoreDisplay.innerText = "Score: 0";
+        questions.sort(() => Math.random() - 0.5);
+        loadQuestion();
+      }
+
       loadQuestion();
-    }
-
-    loadQuestion();
-
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>

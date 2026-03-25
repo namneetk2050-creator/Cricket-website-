@@ -1,238 +1,427 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personalized Jersey - IND vs AUS Series</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Navy background to match theme */
-            color: white;
-        }
-        .jersey-font {
-            font-family: 'Oswald', sans-serif;
-        }
-        .custom-shadow {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-        .jersey-path {
-            transition: fill 0.3s ease;
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #fbbf24;
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        input, select {
-            color: black;
-        }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0f172a; /* Navy background to match theme */
+        color: white;
+      }
+      .jersey-font {
+        font-family: "Oswald", sans-serif;
+      }
+      .custom-shadow {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      }
+      .jersey-path {
+        transition: fill 0.3s ease;
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #fbbf24;
+        transition: width 0.3s;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      input,
+      select {
+        color: black;
+      }
     </style>
-</head>
-<body class="min-h-screen">
-
+  </head>
+  <body class="min-h-screen">
     <!-- ================= NAVBAR ================= -->
     <nav class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-extrabold text-amber-500 tracking-tighter">IND vs AUS</h1>
-                </div>
-                <div class="hidden md:block">
-                    <ul class="flex space-x-8 text-sm font-semibold text-slate-300">
-                        <li><a href="home.html" class="nav-link">Home</a></li>
-                        <li><a href="jerseycustimisation.html" class="text-amber-500 border-b-2 border-amber-500 pb-1">Jersey</a></li>
-                        <li><a href="merchandising.html" class="nav-link">Shop</a></li>
-                        <li><a href="game.html" class="nav-link">Game</a></li>
-                        <li><a href="quiz.html" class="nav-link">Quiz</a></li>
-                        <li><a href="highlights.html" class="nav-link">Highlights</a></li>
-                        <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-extrabold text-amber-500 tracking-tighter">
+              IND vs AUS
+            </h1>
+          </div>
+          <div class="hidden md:block">
+            <ul class="flex space-x-8 text-sm font-semibold text-slate-300">
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li>
+                <a
+                  href="jerseycustimisation.html"
+                  class="text-amber-500 border-b-2 border-amber-500 pb-1"
+                  >Jersey</a
+                >
+              </li>
+              <li><a href="merchandising.html" class="nav-link">Shop</a></li>
+              <li><a href="game.html" class="nav-link">Game</a></li>
+              <li><a href="quiz.html" class="nav-link">Quiz</a></li>
+              <li><a href="highlights.html" class="nav-link">Highlights</a></li>
+              <li><a href="blog.html" class="nav-link">Blog</a></li>
+            </ul>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- ================= MAIN CONTENT ================= -->
     <main class="max-w-7xl mx-auto px-4 py-8 lg:px-8">
-        <header class="mb-8 text-center">
-            <h2 class="text-4xl font-bold text-white">Customize Your Kit</h2>
-            <p class="text-slate-400 mt-2">Design your official 2026 Series gear</p>
-        </header>
+      <header class="mb-8 text-center">
+        <h2 class="text-4xl font-bold text-white">Customize Your Kit</h2>
+        <p class="text-slate-400 mt-2">Design your official 2026 Series gear</p>
+      </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <!-- LEFT COLUMN: PREVIEW -->
-            <div class="lg:col-span-7 space-y-6">
-                <div class="bg-slate-800 rounded-3xl custom-shadow p-8 flex flex-col items-center justify-center relative overflow-hidden min-h-[550px] border border-slate-700">
-                    <div id="jersey-container" class="relative w-full max-w-md transition-transform duration-500 hover:scale-105">
-                        <svg id="jersey-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                            <path id="body-main" class="jersey-path" d="M150,100 L350,100 L370,150 L370,450 L130,450 L130,150 Z" fill="#003399" />
-                            <g id="sleeves-group">
-                                <path id="sleeve-left" class="jersey-path" d="M150,100 L80,180 L110,210 L130,160 Z" fill="#003399" />
-                                <path id="sleeve-right" class="jersey-path" d="M350,100 L420,180 L390,210 L370,160 Z" fill="#003399" />
-                                <path id="sleeve-left-long" class="jersey-path hidden" d="M110,210 L90,320 L120,320 L130,160 Z" fill="#003399" />
-                                <path id="sleeve-right-long" class="jersey-path hidden" d="M390,210 L410,320 L380,320 L370,160 Z" fill="#003399" />
-                            </g>
-                            <path id="trim-collar" class="jersey-path" d="M200,100 Q250,130 300,100 L300,110 Q250,140 200,110 Z" fill="#FF9933" />
-                            <text id="preview-text-name" x="250" y="220" text-anchor="middle" fill="white" font-size="28" font-weight="bold" class="jersey-font uppercase tracking-widest">PLAYER NAME</text>
-                            <text id="preview-text-number" x="250" y="340" text-anchor="middle" fill="white" font-size="110" font-weight="bold" class="jersey-font">07</text>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-                    <h3 class="text-amber-500 font-bold mb-4 flex items-center">
-                        Selected Configuration
-                    </h3>
-                    <ul id="summary-list" class="grid grid-cols-2 gap-4 text-sm text-slate-300">
-                        <li class="border-b border-slate-700 pb-2">Format: <span id="sum-format" class="font-bold text-white ml-2">T20 International</span></li>
-                        <li class="border-b border-slate-700 pb-2">Size: <span id="sum-size" class="font-bold text-white ml-2">Adult M</span></li>
-                        <li class="border-b border-slate-700 pb-2">Name: <span id="sum-name" class="font-bold text-white ml-2">PLAYER NAME</span></li>
-                        <li class="border-b border-slate-700 pb-2">Number: <span id="sum-number" class="font-bold text-white ml-2">07</span></li>
-                    </ul>
-                </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- LEFT COLUMN: PREVIEW -->
+        <div class="lg:col-span-7 space-y-6">
+          <div
+            class="bg-slate-800 rounded-3xl custom-shadow p-8 flex flex-col items-center justify-center relative overflow-hidden min-h-[550px] border border-slate-700"
+          >
+            <div
+              id="jersey-container"
+              class="relative w-full max-w-md transition-transform duration-500 hover:scale-105"
+            >
+              <svg
+                id="jersey-svg"
+                viewBox="0 0 500 500"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  id="body-main"
+                  class="jersey-path"
+                  d="M150,100 L350,100 L370,150 L370,450 L130,450 L130,150 Z"
+                  fill="#003399"
+                />
+                <g id="sleeves-group">
+                  <path
+                    id="sleeve-left"
+                    class="jersey-path"
+                    d="M150,100 L80,180 L110,210 L130,160 Z"
+                    fill="#003399"
+                  />
+                  <path
+                    id="sleeve-right"
+                    class="jersey-path"
+                    d="M350,100 L420,180 L390,210 L370,160 Z"
+                    fill="#003399"
+                  />
+                  <path
+                    id="sleeve-left-long"
+                    class="jersey-path hidden"
+                    d="M110,210 L90,320 L120,320 L130,160 Z"
+                    fill="#003399"
+                  />
+                  <path
+                    id="sleeve-right-long"
+                    class="jersey-path hidden"
+                    d="M390,210 L410,320 L380,320 L370,160 Z"
+                    fill="#003399"
+                  />
+                </g>
+                <path
+                  id="trim-collar"
+                  class="jersey-path"
+                  d="M200,100 Q250,130 300,100 L300,110 Q250,140 200,110 Z"
+                  fill="#FF9933"
+                />
+                <text
+                  id="preview-text-name"
+                  x="250"
+                  y="220"
+                  text-anchor="middle"
+                  fill="white"
+                  font-size="28"
+                  font-weight="bold"
+                  class="jersey-font uppercase tracking-widest"
+                >
+                  PLAYER NAME
+                </text>
+                <text
+                  id="preview-text-number"
+                  x="250"
+                  y="340"
+                  text-anchor="middle"
+                  fill="white"
+                  font-size="110"
+                  font-weight="bold"
+                  class="jersey-font"
+                >
+                  07
+                </text>
+              </svg>
             </div>
+          </div>
 
-            <!-- RIGHT COLUMN: CONTROLS -->
-            <div class="lg:col-span-5 space-y-6">
-                
-                <!-- FORMAT -->
-                <div class="bg-slate-800 rounded-2xl custom-shadow p-6 border border-slate-700">
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Edition & Format</label>
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <button onclick="setFormat('t20-dark')" id="btn-t20-dark" class="format-btn border-2 border-slate-700 py-3 rounded-xl flex flex-col items-center hover:bg-slate-700 transition-all">
-                            <span class="text-lg font-extrabold text-white">T20</span>
-                            <span class="text-[10px] text-green-400 uppercase font-bold">Dark Green</span>
-                        </button>
-                        <button onclick="setFormat('odi-yellow')" id="btn-odi-yellow" class="format-btn border-2 border-slate-700 py-3 rounded-xl flex flex-col items-center hover:bg-slate-700 transition-all">
-                            <span class="text-lg font-extrabold text-white">ODI</span>
-                            <span class="text-[10px] text-yellow-400 uppercase font-bold">Bright Yellow</span>
-                        </button>
-                        <button onclick="setFormat('t20')" id="btn-t20" class="format-btn border-2 border-amber-500 bg-slate-700 py-3 rounded-xl flex flex-col items-center transition-all">
-                            <span class="text-lg font-extrabold text-white">T20</span>
-                            <span class="text-[10px] text-amber-500 uppercase font-bold">Classic Blue</span>
-                        </button>
-                        <button onclick="setFormat('test')" id="btn-test" class="format-btn border-2 border-slate-700 py-3 rounded-xl flex flex-col items-center hover:bg-slate-700 transition-all">
-                            <span class="text-lg font-extrabold text-white">TEST</span>
-                            <span class="text-[10px] text-slate-400 uppercase font-bold">Pure White</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- SIZING -->
-                <div class="bg-slate-800 rounded-2xl custom-shadow p-6 border border-slate-700">
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Choose Your Size</label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <p class="text-[10px] text-slate-500 font-bold uppercase mb-2">Kids (Age)</p>
-                            <select id="size-kids" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg p-2 focus:ring-2 focus:ring-amber-500" onchange="updateSize('Kids ' + this.value)">
-                                <option value="">Select Kids Size</option>
-                                <option value="2">2</option><option value="4">4</option>
-                                <option value="6">6</option><option value="8">8</option>
-                                <option value="10">10</option><option value="12">12</option>
-                                <option value="14">14</option><option value="16">16</option>
-                            </select>
-                        </div>
-                        <div>
-                            <p class="text-[10px] text-slate-500 font-bold uppercase mb-2">Adults</p>
-                            <select id="size-adults" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg p-2 focus:ring-2 focus:ring-amber-500" onchange="updateSize(this.value)">
-                                <option value="M">Adult M</option>
-                                <option value="XXS">XXS</option><option value="XS">XS</option>
-                                <option value="S">S</option><option value="L">L</option>
-                                <option value="XL">XL</option><option value="XXL">XXL</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PERSONALIZATION -->
-                <div class="bg-slate-800 rounded-2xl custom-shadow p-6 space-y-4 border border-slate-700">
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Identity</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="text" id="input-name" placeholder="NAME" maxlength="12" class="bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 uppercase font-bold" oninput="updatePersonalization()">
-                        <input type="number" id="input-number" placeholder="07" min="0" max="99" class="bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 font-bold" oninput="updatePersonalization()">
-                    </div>
-                </div>
-
-                <button class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-4 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2">
-                    <span>ADD TO CART</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </button>
-            </div>
+          <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
+            <h3 class="text-amber-500 font-bold mb-4 flex items-center">
+              Selected Configuration
+            </h3>
+            <ul
+              id="summary-list"
+              class="grid grid-cols-2 gap-4 text-sm text-slate-300"
+            >
+              <li class="border-b border-slate-700 pb-2">
+                Format:
+                <span id="sum-format" class="font-bold text-white ml-2"
+                  >T20 International</span
+                >
+              </li>
+              <li class="border-b border-slate-700 pb-2">
+                Size:
+                <span id="sum-size" class="font-bold text-white ml-2"
+                  >Adult M</span
+                >
+              </li>
+              <li class="border-b border-slate-700 pb-2">
+                Name:
+                <span id="sum-name" class="font-bold text-white ml-2"
+                  >PLAYER NAME</span
+                >
+              </li>
+              <li class="border-b border-slate-700 pb-2">
+                Number:
+                <span id="sum-number" class="font-bold text-white ml-2"
+                  >07</span
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <!-- RIGHT COLUMN: CONTROLS -->
+        <div class="lg:col-span-5 space-y-6">
+          <!-- FORMAT -->
+          <div
+            class="bg-slate-800 rounded-2xl custom-shadow p-6 border border-slate-700"
+          >
+            <label
+              class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-4"
+              >Edition & Format</label
+            >
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <button
+                onclick="setFormat('t20-dark')"
+                id="btn-t20-dark"
+                class="format-btn border-2 border-slate-700 py-3 rounded-xl flex flex-col items-center hover:bg-slate-700 transition-all"
+              >
+                <span class="text-lg font-extrabold text-white">T20</span>
+                <span class="text-[10px] text-green-400 uppercase font-bold"
+                  >Dark Green</span
+                >
+              </button>
+              <button
+                onclick="setFormat('odi-yellow')"
+                id="btn-odi-yellow"
+                class="format-btn border-2 border-slate-700 py-3 rounded-xl flex flex-col items-center hover:bg-slate-700 transition-all"
+              >
+                <span class="text-lg font-extrabold text-white">ODI</span>
+                <span class="text-[10px] text-yellow-400 uppercase font-bold"
+                  >Bright Yellow</span
+                >
+              </button>
+              <button
+                onclick="setFormat('t20')"
+                id="btn-t20"
+                class="format-btn border-2 border-amber-500 bg-slate-700 py-3 rounded-xl flex flex-col items-center transition-all"
+              >
+                <span class="text-lg font-extrabold text-white">T20</span>
+                <span class="text-[10px] text-amber-500 uppercase font-bold"
+                  >Classic Blue</span
+                >
+              </button>
+              <button
+                onclick="setFormat('test')"
+                id="btn-test"
+                class="format-btn border-2 border-slate-700 py-3 rounded-xl flex flex-col items-center hover:bg-slate-700 transition-all"
+              >
+                <span class="text-lg font-extrabold text-white">TEST</span>
+                <span class="text-[10px] text-slate-400 uppercase font-bold"
+                  >Pure White</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <!-- SIZING -->
+          <div
+            class="bg-slate-800 rounded-2xl custom-shadow p-6 border border-slate-700"
+          >
+            <label
+              class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-4"
+              >Choose Your Size</label
+            >
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-[10px] text-slate-500 font-bold uppercase mb-2">
+                  Kids (Age)
+                </p>
+                <select
+                  id="size-kids"
+                  class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg p-2 focus:ring-2 focus:ring-amber-500"
+                  onchange="updateSize('Kids ' + this.value)"
+                >
+                  <option value="">Select Kids Size</option>
+                  <option value="2">2</option>
+                  <option value="4">4</option>
+                  <option value="6">6</option>
+                  <option value="8">8</option>
+                  <option value="10">10</option>
+                  <option value="12">12</option>
+                  <option value="14">14</option>
+                  <option value="16">16</option>
+                </select>
+              </div>
+              <div>
+                <p class="text-[10px] text-slate-500 font-bold uppercase mb-2">
+                  Adults
+                </p>
+                <select
+                  id="size-adults"
+                  class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg p-2 focus:ring-2 focus:ring-amber-500"
+                  onchange="updateSize(this.value)"
+                >
+                  <option value="M">Adult M</option>
+                  <option value="XXS">XXS</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- PERSONALIZATION -->
+          <div
+            class="bg-slate-800 rounded-2xl custom-shadow p-6 space-y-4 border border-slate-700"
+          >
+            <label
+              class="block text-xs font-bold text-slate-400 uppercase tracking-wider"
+              >Identity</label
+            >
+            <div class="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                id="input-name"
+                placeholder="NAME"
+                maxlength="12"
+                class="bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 uppercase font-bold"
+                oninput="updatePersonalization()"
+              />
+              <input
+                type="number"
+                id="input-number"
+                placeholder="07"
+                min="0"
+                max="99"
+                class="bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-amber-500 font-bold"
+                oninput="updatePersonalization()"
+              />
+            </div>
+          </div>
+
+          <button
+            class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-4 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2"
+          >
+            <span>ADD TO CART</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </main>
 
     <script>
-        let currentFormat = 't20';
-        const previewName = document.getElementById('preview-text-name');
-        const previewNumber = document.getElementById('preview-text-number');
-        const sumFormat = document.getElementById('sum-format');
-        const sumSize = document.getElementById('sum-size');
+      let currentFormat = "t20";
+      const previewName = document.getElementById("preview-text-name");
+      const previewNumber = document.getElementById("preview-text-number");
+      const sumFormat = document.getElementById("sum-format");
+      const sumSize = document.getElementById("sum-size");
 
-        function updatePersonalization() {
-            const name = document.getElementById('input-name').value.trim() || "PLAYER NAME";
-            const number = document.getElementById('input-number').value.trim() || "07";
-            previewName.textContent = name;
-            previewNumber.textContent = number;
-            document.getElementById('sum-name').textContent = name;
-            document.getElementById('sum-number').textContent = number;
+      function updatePersonalization() {
+        const name =
+          document.getElementById("input-name").value.trim() || "PLAYER NAME";
+        const number =
+          document.getElementById("input-number").value.trim() || "07";
+        previewName.textContent = name;
+        previewNumber.textContent = number;
+        document.getElementById("sum-name").textContent = name;
+        document.getElementById("sum-number").textContent = number;
+      }
+
+      function updateSize(size) {
+        sumSize.textContent = size;
+      }
+
+      function setFormat(format) {
+        currentFormat = format;
+        document
+          .querySelectorAll(".format-btn")
+          .forEach((btn) =>
+            btn.classList.remove("border-amber-500", "bg-slate-700"),
+          );
+        document
+          .getElementById(`btn-${format}`)
+          .classList.add("border-amber-500", "bg-slate-700");
+
+        if (format === "t20-dark") {
+          setColors("#064e3b", "#fbbf24"); // Dark Green
+          sumFormat.textContent = "T20 Dark Green Edition";
+        } else if (format === "odi-yellow") {
+          setColors("#facc15", "#0f172a"); // Bright Yellow
+          sumFormat.textContent = "ODI Yellow Series";
+          previewName.setAttribute("fill", "#0f172a");
+          previewNumber.setAttribute("fill", "#0f172a");
+          return;
+        } else if (format === "t20") {
+          setColors("#003399", "#fbbf24");
+          sumFormat.textContent = "T20 International";
+        } else if (format === "test") {
+          setColors("#ffffff", "#003399");
+          sumFormat.textContent = "ICC Test Match";
+          previewName.setAttribute("fill", "#003399");
+          previewNumber.setAttribute("fill", "#003399");
+          return;
         }
+        previewName.setAttribute("fill", "white");
+        previewNumber.setAttribute("fill", "white");
+      }
 
-        function updateSize(size) {
-            sumSize.textContent = size;
-        }
+      function setColors(base, accent) {
+        document.getElementById("body-main").setAttribute("fill", base);
+        document
+          .querySelectorAll(".jersey-path:not(#trim-collar)")
+          .forEach((p) => p.setAttribute("fill", base));
+        document.getElementById("trim-collar").setAttribute("fill", accent);
+      }
 
-        function setFormat(format) {
-            currentFormat = format;
-            document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('border-amber-500', 'bg-slate-700'));
-            document.getElementById(`btn-${format}`).classList.add('border-amber-500', 'bg-slate-700');
-
-            if(format === 't20-dark') {
-                setColors('#064e3b', '#fbbf24'); // Dark Green
-                sumFormat.textContent = "T20 Dark Green Edition";
-            } else if (format === 'odi-yellow') {
-                setColors('#facc15', '#0f172a'); // Bright Yellow
-                sumFormat.textContent = "ODI Yellow Series";
-                previewName.setAttribute('fill', '#0f172a');
-                previewNumber.setAttribute('fill', '#0f172a');
-                return;
-            } else if (format === 't20') {
-                setColors('#003399', '#fbbf24');
-                sumFormat.textContent = "T20 International";
-            } else if (format === 'test') {
-                setColors('#ffffff', '#003399');
-                sumFormat.textContent = "ICC Test Match";
-                previewName.setAttribute('fill', '#003399');
-                previewNumber.setAttribute('fill', '#003399');
-                return;
-            }
-            previewName.setAttribute('fill', 'white');
-            previewNumber.setAttribute('fill', 'white');
-        }
-
-        function setColors(base, accent) {
-            document.getElementById('body-main').setAttribute('fill', base);
-            document.querySelectorAll('.jersey-path:not(#trim-collar)').forEach(p => p.setAttribute('fill', base));
-            document.getElementById('trim-collar').setAttribute('fill', accent);
-        }
-
-        window.onload = () => setFormat('t20');
+      window.onload = () => setFormat("t20");
     </script>
-</body>
+  </body>
 </html>
